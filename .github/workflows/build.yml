@@ -1,0 +1,40 @@
+name: Build mtp
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: plugin
+
+      - uses: actions/checkout@v4
+        with:
+          repository: narezany/MargyT
+          path: margyt-src
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pack the plugin
+        run: |
+          mkdir -p margyt-src/examples/pet/java/pet/margyt
+          cp plugin/manifest.json plugin/icon.png margyt-src/examples/pet/
+          cp plugin/PetPlugin.java plugin/PetView.java margyt-src/examples/pet/java/pet/margyt/
+          cd margyt-src
+          python3 -m margyt.plugin examples/pet
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: margyt-pet
+          path: margyt-src/examples/pet/*.mtp
