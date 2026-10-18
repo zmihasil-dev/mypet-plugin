@@ -1,0 +1,11 @@
+{
+  "id": "margyt.pet",
+  "name": "Pet",
+  "name_ru": "Питомец",
+  "version": "1.0",
+  "author": "Pet plugin",
+  "description": "A pet made from your avatar. Tap to pet it, long-press for the menu (feed, water, play, sleep), drag it anywhere on the screen.",
+  "description_ru": "Питомец из твоей аватарки. Тап — погладить, удержание — меню (кормить, поить, играть, спать), перетаскивай куда хочешь по экрану.",
+  "entry": "pet.margyt.PetPlugin",
+  "min_api": 1
+}
